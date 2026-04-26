@@ -41,6 +41,139 @@ button {
   cursor: pointer;
 }
 
+[hidden] {
+  display: none !important;
+}
+
+.auth-view {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.72fr);
+  align-items: center;
+  gap: 28px;
+  min-height: 100vh;
+  padding: 42px;
+}
+
+.auth-hero {
+  display: grid;
+  align-content: center;
+  gap: 34px;
+  min-height: calc(100vh - 84px);
+  padding: 40px;
+  border-radius: 8px;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.64), rgba(255, 255, 255, 0.72)),
+    url("https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1400&q=80");
+  background-position: center;
+  background-size: cover;
+  box-shadow: var(--shadow);
+}
+
+.auth-brand {
+  align-self: start;
+}
+
+.auth-copy {
+  max-width: 720px;
+}
+
+.auth-copy h1 {
+  margin: 8px 0 0;
+  font-size: clamp(34px, 5vw, 64px);
+  line-height: 1.02;
+}
+
+.auth-copy p:last-child {
+  max-width: 600px;
+  margin: 18px 0 0;
+  color: #465363;
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.auth-points {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.auth-points span {
+  padding: 9px 12px;
+  border: 1px solid rgba(39, 123, 92, 0.2);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.74);
+  color: var(--green);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.auth-card {
+  display: grid;
+  gap: 16px;
+  padding: 28px;
+  border: 1px solid rgba(220, 227, 234, 0.9);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--shadow);
+}
+
+.auth-card h2 {
+  margin: 4px 0 0;
+  font-size: 28px;
+}
+
+.auth-card input {
+  width: 100%;
+}
+
+.auth-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.form-message {
+  min-height: 20px;
+  margin: 0;
+  color: var(--green);
+  font-size: 14px;
+}
+
+.form-message.error {
+  color: var(--red);
+}
+
+.toast {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 10;
+  max-width: min(360px, calc(100vw - 48px));
+  padding: 13px 16px;
+  border: 1px solid rgba(39, 123, 92, 0.24);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--green);
+  box-shadow: 0 18px 48px rgba(20, 30, 42, 0.18);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.toast.error {
+  border-color: rgba(180, 64, 58, 0.26);
+  color: var(--red);
+}
+
 .app-shell {
   display: grid;
   grid-template-columns: 280px minmax(0, 1fr);
@@ -200,6 +333,43 @@ button {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 14px;
   margin-bottom: 18px;
+}
+
+.auth-panel {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.8fr) minmax(320px, 1.2fr);
+  align-items: end;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+.auth-panel[hidden],
+[hidden] {
+  display: none !important;
+}
+
+.auth-panel h2 {
+  margin: 4px 0 0;
+}
+
+.auth-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 10px;
+}
+
+.auth-form input {
+  width: 100%;
+}
+
+.empty-state {
+  margin: 0;
+  padding: 18px;
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  color: var(--muted);
+  background: #fff;
 }
 
 .patient-strip article,
@@ -518,6 +688,14 @@ dialog::backdrop {
 }
 
 @media (max-width: 1100px) {
+  .auth-view {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-hero {
+    min-height: auto;
+  }
+
   .app-shell {
     grid-template-columns: 1fr;
   }
@@ -536,9 +714,14 @@ dialog::backdrop {
   }
 
   .patient-strip,
+  .auth-panel,
   .main-grid,
   .lower-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .auth-form {
+    grid-template-columns: 1fr;
   }
 
   .reminder-panel {
@@ -547,6 +730,19 @@ dialog::backdrop {
 }
 
 @media (max-width: 760px) {
+  .auth-view {
+    padding: 18px;
+  }
+
+  .auth-hero,
+  .auth-card {
+    padding: 22px;
+  }
+
+  .auth-actions {
+    grid-template-columns: 1fr;
+  }
+
   .workspace,
   .sidebar {
     padding: 18px;
@@ -560,6 +756,7 @@ dialog::backdrop {
   }
 
   .sidebar nav,
+  .auth-panel,
   .patient-strip,
   .main-grid,
   .lower-grid,
