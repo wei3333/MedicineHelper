@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>慢病用药小管家</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="sidebar" aria-label="应用导航">
+        <div class="brand">
+          <div class="brand-mark">药</div>
+          <div>
+            <p>慢病用药</p>
+            <strong>小管家</strong>
+          </div>
+        </div>
+        <nav>
+          <a class="active" href="#overview">总览</a>
+          <a href="#plan">用药计划</a>
+          <a href="#refill">购药库存</a>
+          <a href="#followup">复诊续方</a>
+          <a href="#records">健康记录</a>
+        </nav>
+        <section class="sidebar-note">
+          <span>今日重点</span>
+          <strong>晚餐后 30 分钟服药</strong>
+          <p>系统会根据处方、余药和复诊周期自动推送提醒。</p>
+        </section>
+      </aside>
+
+      <section class="workspace">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">个人连续用药服务</p>
+            <h1>从复诊开药到按时服药，再到续方补药</h1>
+          </div>
+          <button class="primary-action" id="addMedicineBtn" type="button">
+            <span aria-hidden="true">+</span>
+            添加用药
+          </button>
+        </header>
+
+        <section class="patient-strip" id="overview">
+          <article>
+            <span>管理对象</span>
+            <strong>李阿姨，58 岁</strong>
+            <p>高血压、2 型糖尿病长期用药</p>
+          </article>
+          <article>
+            <span>本周依从性</span>
+            <strong>91%</strong>
+            <p>漏服 1 次，已补记原因</p>
+          </article>
+          <article>
+            <span>余药风险</span>
+            <strong>7 天后不足</strong>
+            <p>二甲双胍建议提前补药</p>
+          </article>
+          <article>
+            <span>下次复诊</span>
+            <strong>5 月 12 日</strong>
+            <p>提前 3 天准备血压血糖记录</p>
+          </article>
+        </section>
+
+        <section class="main-grid">
+          <section class="panel medication-panel" id="plan">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">今天</p>
+                <h2>用药时间轴</h2>
+              </div>
+              <div class="segmented" role="tablist" aria-label="用药状态筛选">
+                <button class="selected" type="button">全部</button>
+                <button type="button">待服</button>
+                <button type="button">已服</button>
+              </div>
+            </div>
+            <div class="timeline" id="medicineList"></div>
+          </section>
+
+          <aside class="panel reminder-panel">
+            <div class="section-head compact">
+              <div>
+                <p class="eyebrow">智能提醒</p>
+                <h2>下一步行动</h2>
+              </div>
+            </div>
+            <div class="action-list">
+              <button type="button">
+                <span>01</span>
+                <strong>晚 19:30 推送服药提醒</strong>
+                <small>微信服务通知 + 应用内横幅</small>
+              </button>
+              <button type="button">
+                <span>02</span>
+                <strong>4 月 30 日提醒补药</strong>
+                <small>根据余量和配送时效预估</small>
+              </button>
+              <button type="button">
+                <span>03</span>
+                <strong>5 月 9 日收集复诊材料</strong>
+                <small>血压、空腹血糖、漏服记录</small>
+              </button>
+            </div>
+          </aside>
+        </section>
+
+        <section class="lower-grid">
+          <section class="panel" id="refill">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">购药库存</p>
+                <h2>处方与余药</h2>
+              </div>
+              <button class="ghost-action" type="button">查看购药记录</button>
+            </div>
+            <div class="stock-table" aria-label="处方与库存">
+              <div class="table-row table-head">
+                <span>药品</span>
+                <span>库存</span>
+                <span>续购建议</span>
+              </div>
+              <div class="table-row warning">
+                <span>二甲双胍缓释片</span>
+                <span>14 片</span>
+                <span>4 月 30 日前下单</span>
+              </div>
+              <div class="table-row">
+                <span>苯磺酸氨氯地平片</span>
+                <span>32 片</span>
+                <span>暂不需要</span>
+              </div>
+              <div class="table-row">
+                <span>阿托伐他汀钙片</span>
+                <span>20 片</span>
+                <span>随下次复诊续方</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel" id="followup">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">复诊续方</p>
+                <h2>服务流程</h2>
+              </div>
+            </div>
+            <div class="journey">
+              <div class="journey-step done">
+                <span>问诊</span>
+                <strong>线上复诊完成</strong>
+                <p>医生已确认 30 天处方</p>
+              </div>
+              <div class="journey-step done">
+                <span>购药</span>
+                <strong>处方药已购买</strong>
+                <p>自动生成库存和服药计划</p>
+              </div>
+              <div class="journey-step current">
+                <span>用药</span>
+                <strong>持续提醒打卡</strong>
+                <p>漏服、停药、不良反应可追踪</p>
+              </div>
+              <div class="journey-step">
+                <span>续方</span>
+                <strong>复诊前准备</strong>
+                <p>汇总指标给医生快速判断</p>
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <section class="panel records-panel" id="records">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">健康记录</p>
+              <h2>复诊材料自动归档</h2>
+            </div>
+            <div class="metric-inputs">
+              <label>
+                血压
+                <input value="128/82" aria-label="血压记录" />
+              </label>
+              <label>
+                空腹血糖
+                <input value="6.4" aria-label="空腹血糖记录" />
+              </label>
+              <button class="primary-action small" type="button">保存</button>
+            </div>
+          </div>
+          <div class="record-cards">
+            <article>
+              <span>最近 7 天血压</span>
+              <strong>126/80</strong>
+              <p>较上周稳定，建议继续观察早晚差异。</p>
+            </article>
+            <article>
+              <span>用药异常</span>
+              <strong>1 次漏服</strong>
+              <p>原因：外出未携带药盒，已加入出门提醒。</p>
+            </article>
+            <article>
+              <span>医生关注</span>
+              <strong>餐后血糖</strong>
+              <p>下次复诊前连续记录 3 天餐后 2 小时血糖。</p>
+            </article>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <dialog id="medicineDialog">
+      <form method="dialog" class="dialog-card">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">新建计划</p>
+            <h2>添加一条长期用药</h2>
+          </div>
+          <button class="icon-button" value="cancel" aria-label="关闭" type="submit">×</button>
+        </div>
+        <label>
+          药品名称
+          <input id="medicineName" value="硝苯地平控释片" />
+        </label>
+        <label>
+          服药时间
+          <input id="medicineTime" value="早餐后" />
+        </label>
+        <label>
+          剂量说明
+          <input id="medicineDose" value="每日 1 次，每次 1 片" />
+        </label>
+        <div class="dialog-actions">
+          <button class="ghost-action" value="cancel" type="submit">取消</button>
+          <button class="primary-action" id="saveMedicineBtn" value="default" type="button">加入计划</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="app.js"></script>
+  </body>
+</html>
