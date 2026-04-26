@@ -1,4 +1,6 @@
-const medicines = [
+const storageKey = "chronic-care-medicines";
+
+const defaultMedicines = [
   {
     time: "07:30",
     name: "二甲双胍缓释片",
@@ -25,10 +27,17 @@ const medicines = [
   },
 ];
 
+const savedMedicines = JSON.parse(localStorage.getItem(storageKey) || "null");
+const medicines = Array.isArray(savedMedicines) ? savedMedicines : defaultMedicines;
+
 const list = document.querySelector("#medicineList");
 const dialog = document.querySelector("#medicineDialog");
 const addButton = document.querySelector("#addMedicineBtn");
 const saveButton = document.querySelector("#saveMedicineBtn");
+
+function saveMedicines() {
+  localStorage.setItem(storageKey, JSON.stringify(medicines));
+}
 
 function statusLabel(status) {
   if (status === "taken") return "已服";
@@ -63,6 +72,7 @@ list.addEventListener("click", (event) => {
 
   const medicine = medicines[Number(button.dataset.index)];
   medicine.status = medicine.status === "taken" ? "pending" : "taken";
+  saveMedicines();
   renderMedicines();
 });
 
@@ -84,6 +94,7 @@ saveButton.addEventListener("click", () => {
     status: "pending",
   });
 
+  saveMedicines();
   renderMedicines();
   dialog.close();
 });
